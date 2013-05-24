@@ -21,9 +21,11 @@ public class Precedence implements Observer {
 						try {
 							throw exception(e);
 						} catch (Exception e1) {
+							//#if Precedence
 							e.setSalaryWithOldSalary();
 							e.setOldSalary(e.getSalary());
 							System.out.println(e1.getMessage());
+							//#endif
 						}
 				} else {
 					// A manager of the upper department, if any, must have a greater salary.
@@ -32,9 +34,11 @@ public class Precedence implements Observer {
 							try {
 								throw exception(e);
 							} catch (Exception e1) {
+								//#if Precedence
 								e.setSalaryWithOldSalary();
 								e.setOldSalary(e.getSalary());
 								System.out.println(e1.getMessage());
+								//#endif
 							}
 					// All managed employees must have smaller salaries.
 					// For sub-departments, the manager is tested only.
@@ -44,18 +48,22 @@ public class Precedence implements Observer {
 								try {
 									throw exception(e);
 								} catch (Exception e1) {
+									//#if Precedence
 									e.setSalaryWithOldSalary();
 									e.setOldSalary(e.getSalary());
 									System.out.println(e1.getMessage());
+									//#endif
 								}								
 						} else {
 							if (u!=e && ((EmployeeImpl)u).getSalary() >= e.getSalary())
 								try {
 									throw exception(e);
 								} catch (Exception e1) {
+									//#if Precedence
 									e.setSalaryWithOldSalary();
 									e.setOldSalary(e.getSalary());
 									System.out.println(e1.getMessage());
+									//#endif
 								}								
 						}
 				}

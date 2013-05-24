@@ -7,7 +7,9 @@ import javax.swing.tree.DefaultMutableTreeNode;
 
 import org.softlang.company.*;
 
+//#if Cut || Total
 import org.softlang.visitor.*;
+//#endif
 
 public class DepartmentImpl extends ContainerImpl implements Department {
 	
@@ -80,14 +82,12 @@ public class DepartmentImpl extends ContainerImpl implements Department {
 		return null;
 	}	
 	
+	//#if Cut || Total
 	public void accept(VoidVisitor v) {
-		//#if Cut || Total
 		v.visit(this);
-		//#endif
 	}
 	public <R> R accept(ReturningVisitor<R> v) {
-		//#if Cut || Total
 		return v.visit(this);
-		//#endif
 	}
+	//#endif
 }

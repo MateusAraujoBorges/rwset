@@ -30,28 +30,30 @@ public abstract class Reducer<R> implements ReturningVisitor<R> {
 		return monoid.unit();
 	}
 	
-	public final R reduce(Component c) {
-		//
-		// Use an inner visitor to organize traversal.
-		//
-		final ReturningVisitor<R> that = this;
-		return c.accept(
-			new ReturningVisitor<R>() {
-				public R visit(Company c) {
-					R result = that.visit(c);
-					for (Subunit u : c.subunits())
-						result = monoid.append(result, u.accept(this));
-					return result;
-				}
-				public R visit(Department d) {
-					R result = that.visit(d);
-					for (Subunit u : d.subunits())
-						result = monoid.append(result, u.accept(this));
-					return result;
-				}
-				public R visit(Employee e) {
-					return that.visit(e);
-				}		
-			});
-	}
+	//#if Cut || Total
+	//@	public final R reduce(Component c) {
+	//@	//
+	//@	// Use an inner visitor to organize traversal.
+	//@	//
+	//@	final ReturningVisitor<R> that = this;
+	//@	return c.accept(
+	//@		new ReturningVisitor<R>() {
+	//@			public R visit(Company c) {
+	//@				R result = that.visit(c);
+	//@				for (Subunit u : c.subunits())
+	//@					result = monoid.append(result, u.accept(this));
+	//@				return result;
+	//@			}
+	//@			public R visit(Department d) {
+	//@				R result = that.visit(d);
+	//@				for (Subunit u : d.subunits())
+	//@					result = monoid.append(result, u.accept(this));
+	//@				return result;
+	//@			}
+	//@			public R visit(Employee e) {
+	//@				return that.visit(e);
+	//@			}		
+	//@		});
+	//@}
+	//#endif
 }

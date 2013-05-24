@@ -1,7 +1,9 @@
 package org.softlang.company.impl.bean;
 
 import org.softlang.company.*;
+//#if Cut || Total
 import org.softlang.visitor.*;
+//#endif
 import java.util.Observable;
 
 /**
@@ -24,6 +26,8 @@ public abstract class ComponentImpl extends Observable implements Component {
 	public ComponentImpl getParent() { return parent; }
 	/* package */ void setParent(ComponentImpl parent) { this.parent = parent; }
 	
+	//#if Cut || Total
 	public abstract void accept(VoidVisitor v);
 	public abstract <R> R accept(ReturningVisitor<R> v);
+	//#endif
 }

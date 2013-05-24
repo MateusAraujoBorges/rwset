@@ -4,9 +4,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 import javax.swing.tree.DefaultMutableTreeNode;
-
 import org.softlang.company.*;
+//#if Cut || Total
 import org.softlang.visitor.*;
+//#endif
 
 /**
  * A proxy for departments to enforce access control policy for salaries.
@@ -62,18 +63,16 @@ class ProxyDepartment implements Department {
 		return subject.getManager();
 	}		
 
+	//#if Cut || Total
 	// Delegation is NOT appropriate here.
 	public void accept(VoidVisitor v) {
-		//#if Cut || Total
 		v.visit(this);
-		//#endif
 	}
 	// Delegation is NOT appropriate here.
 	public <R> R accept(ReturningVisitor<R> v) {
-		//#if Cut || Total
 		return v.visit(this);
-		//#endif
 	}
+	//#endif
 	
 	
 	//#if GUI

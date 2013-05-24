@@ -27,6 +27,7 @@ public class Walker implements VoidVisitor {
 		// Use an inner visitor to organize traversal.
 		//
 		final VoidVisitor that = this;
+		//#if Cut || Total
 		c.accept(
 				new VoidVisitor() {
 					public void visit(Company c) {
@@ -43,12 +44,14 @@ public class Walker implements VoidVisitor {
 						that.visit(e);
 					}		
 				});
+		//#endif
 	}	
 	public final void postorder(Component c) {
 		//
 		// Use an inner visitor to organize traversal.
 		//
 		final VoidVisitor that = this;
+		//#if Cut || Total
 		c.accept(
 				new VoidVisitor() {
 					public void visit(Company c) {
@@ -65,5 +68,6 @@ public class Walker implements VoidVisitor {
 						that.visit(e);
 					}		
 				});
+		//#endif
 	}		
 }

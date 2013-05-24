@@ -89,9 +89,11 @@ public class MainView extends JFrame {
 		// create Tree for company
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode(company);
 		
+		//#if GUI
 		for (Department d : company.getDepts()) {
 			root.add(addDepartmentNode(d));
 		}
+		//#endif
 
 		tree = new JTree(root);
 
@@ -103,15 +105,20 @@ public class MainView extends JFrame {
 	 */
 	private MutableTreeNode addDepartmentNode(Department dep) {
 		DefaultMutableTreeNode root = new DefaultMutableTreeNode(dep);
+		//#if GUI
 		dep.setTreeNode(root);
+		//#endif
+		
 		root.add(addManagerNode(dep.getManager()));
 
+		//#if GUI
 		for (Department d : dep.getSubdepts()) {
 			root.add(addDepartmentNode(d));
 		}
 		for (Employee e : dep.getEmployees()) {
 			root.add(addEmployeeNode(e));
 		}
+		//#endif
 		return root;
 	}
 

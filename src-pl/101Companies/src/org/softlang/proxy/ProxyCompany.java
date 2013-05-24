@@ -6,8 +6,10 @@ import java.util.List;
 import org.softlang.company.Company;
 import org.softlang.company.Department;
 import org.softlang.company.Subunit;
+//#if Cut ||  Total
 import org.softlang.visitor.ReturningVisitor;
 import org.softlang.visitor.VoidVisitor;
+//#endif
 
 
 /**
@@ -51,18 +53,16 @@ class ProxyCompany implements Company {
 		return subject.remove(u);
 	}
 
+	//#if Cut ||  Total
 	// Delegation is NOT appropriate here.
 	public void accept(VoidVisitor v) {
-		//#if Cut ||  Total
 		v.visit(this);
-		//#endif
 	}
 	// Delegation is NOT appropriate here.
 	public <R> R accept(ReturningVisitor<R> v) {
-		//#if Cut ||  Total
 		return v.visit(this);
-		//#endif
 	}
+	//#endif
 
 
 	//#if GUI

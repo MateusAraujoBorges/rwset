@@ -1,8 +1,9 @@
 package org.softlang.company.impl.pojo;
 
 import org.softlang.company.*;
+//#if Cut || Total
 import org.softlang.visitor.*;
-
+//#endif
 
 public class EmployeeImpl extends ComponentImpl implements Employee {
 	
@@ -29,17 +30,14 @@ public class EmployeeImpl extends ComponentImpl implements Employee {
 		this.manager = manager;
 	}
 	
+	//#if Cut || Total
 	public void accept(VoidVisitor v) {
-		//#if Cut || Total
 		v.visit(this);
-		//#endif
 	}
 	public <R> R accept(ReturningVisitor<R> v) {
-		//#if Cut || Total
 		return v.visit(this);
-		//#endif
 	}
-	
+	//#endif
 	
 	
 	//#if GUI
